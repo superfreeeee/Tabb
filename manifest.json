@@ -1,0 +1,27 @@
+{
+  "name": "Tabb",
+  "description": "Manage Tabs",
+  "version": "1.0",
+  "manifest_version": 3,
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "options_page": "tabb-option.html",
+  "permissions": ["storage", "activeTab", "scripting", "tabs"],
+  "action": {
+    "default_title": "Tabb\n点击收起当前所有标签页",
+    "default_icon": {
+      "16": "/images/get_started16.png",
+      "32": "/images/get_started32.png",
+      "48": "/images/get_started48.png",
+      "128": "/images/get_started128.png"
+    }
+  },
+  "icons": {
+    "16": "/images/get_started16.png",
+    "32": "/images/get_started32.png",
+    "48": "/images/get_started48.png",
+    "128": "/images/get_started128.png"
+  }
+}

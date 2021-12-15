@@ -1,0 +1,47 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-size: 1em;
+}
+
+.tabb-container {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  height: 100vh;
+  padding: 0 40px;
+}
+
+header {
+  padding: 24px 0;
+}
+
+main {
+  flex: 1;
+  padding-bottom: 60px;
+  overflow: auto;
+}
+
+#pages {
+  max-width: 400px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
+.group {
+  border: 2px solid skyblue;
+}
+
+.group + .group {
+  margin-top: 24px;
+}
+
+.page + .page {
+  border-top: 1px solid #e4e4e4;
+}
