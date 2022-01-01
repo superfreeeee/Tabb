@@ -34,14 +34,81 @@ main {
   word-break: break-all;
 }
 
+/* group */
 .group {
-  border: 2px solid skyblue;
 }
 
 .group + .group {
   margin-top: 24px;
 }
 
+.group-info {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+.group-info .title,
+.group-info .page-count {
+  font-size: 1.2em;
+}
+
+.group-info .page-count {
+}
+
+.group-info .detail {
+}
+
+.group-info .create-time {
+  font-size: 0.7em;
+  color: #888888;
+}
+
+.group-info .actions {
+  display: flex;
+  gap: 24px;
+}
+
+.group-info .actions div {
+  font-size: 0.8em;
+  color: #234da7;
+  cursor: pointer;
+}
+
+.group-info .actions div.disabled {
+  color: #999999;
+}
+
+/* page */
+.page {
+  display: flex;
+  align-items: center;
+  padding: 4px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.page:hover {
+  background-color: rgb(225, 225, 225);
+}
+
+.page img {
+  width: 16px;
+  height: 16px;
+  margin-right: 12px;
+}
+
+.page span {
+  flex: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  word-break: break-all;
+}
+
 .page + .page {
   border-top: 1px solid #e4e4e4;
+}
+
+.template {
+  display: none;
 }

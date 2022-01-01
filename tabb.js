@@ -1,16 +1,65 @@
 import { PAGES_KEY, STORAGE_AREA } from './common/config.js';
-import { getData, onChanged } from './common/storageAPI.js';
+import { getData, onChanged } from './api/storageAPI.js';
+import { load, loadPage } from './common/feature.js';
+import { createElement, selectElement } from './common/dom.js';
 
 // =============== function ===============
 
 // containers
-const PagesContainer = document.querySelector('#pages');
+const PagesContainer = selectElement('#pages');
 const groupsMap = new Map();
+
+const createPageEl = (page) => {
+  const pageEl = document.createElement('div');
+  pageEl.classList.add('page');
+  // alt="${DEFAULT_FAVICON}"
+  pageEl.innerHTML = `
+    <img
+      src="${page.icon}"
+    />
+    <span>${page.title}</span>
+  `;
+  pageEl.addEventListener('click', async () => {
+    await loadPage(page);
+  });
+
+  return pageEl;
+};
+
+const createGroupEl = (group) => {
+  const groupEl = createElement('div', {
+    class: 'group',
+  });
+  groupEl.innerHTML = `
+    <div class="group-info">
+      <div class="title">Web 前端学习</div>
+      <div class="page-count">${group.pages.length}个分页</div>
+      <div class="detail">
+        <div class="create-time">创建于 2021/12/15 下午2:17:41</div>
+        <div class="actions">
+          <div class="recoverAll">恢复全部</div>
+          <div class="removeAll disabled">删除全部</div>
+        </div>
+      </div>
+    </div>`;
+  const recoverAllBtn = selectElement('.recoverAll', groupEl);
+  recoverAllBtn.addEventListener('click', () => {
+    load(group);
+  });
+
+  // pages
+  group.pages.forEach((page) => {
+    const pageEl = createPageEl(page);
+    groupEl.appendChild(pageEl);
+  });
+
+  return groupEl;
+};
 
 /**
  * 渲染 pages
  */
-const renderGroup = (group = []) => {
+const renderGroup = (group) => {
   console.log('[renderGroup] group', group);
 
   if (groupsMap.has(group.id)) {
@@ -18,29 +67,20 @@ const renderGroup = (group = []) => {
     return;
   }
 
-  const groupContainer = document.createElement('div');
-  groupContainer.classList.add('group');
-  group.pages.forEach((page) => {
-    const pageEl = document.createElement('div');
-    pageEl.classList.add('page');
-    pageEl.innerHTML = `
-      <div>title: ${page.title}</div>
-      <div>url: ${page.url}</div>
-    `;
-    groupContainer.appendChild(pageEl);
-  });
+  const groupEl = createGroupEl(group);
 
-  console.log('groupContainer', groupContainer);
-
-  PagesContainer.appendChild(groupContainer);
-  groupsMap.set(group.id, groupContainer);
+  PagesContainer.appendChild(groupEl);
+  groupsMap.set(group.id, groupEl);
 };
 
 const renderGroups = (groups = []) => {
+  // console.log('[renderGroups] groups', groups);
   groups.forEach((group) => {
     renderGroup(group);
   });
 };
+
+const removeGroups = () => {};
 
 (async function onLoad() {
   const pagesData = await getData(PAGES_KEY);
@@ -60,27 +100,7 @@ const renderGroups = (groups = []) => {
       }
       const { oldValue: oldPagesData, newValue: newPagesData } =
         pagesDataChanges;
-      console.log('');
       renderGroups(newPagesData.groups);
     }
   });
-  // add more page
-  // const addBtn = document.querySelector('#add-more-page');
-  // addBtn.addEventListener('click', async () => {
-  //   console.log('click addBtn');
-  //   const oldPages = await getPages();
-  //   const newPages = [
-  //     ...oldPages,
-  //     'https://github.com/GoogleChrome/chrome-extensions-samples/tree/main/api/action',
-  //   ];
-  //   await setPages(newPages);
-  // });
-  // remove all page
-  // const removeAllBtn = document.querySelector('#remove-all-pages');
-  // removeAllBtn.addEventListener('click', async () => {
-  //   await removePages();
-  // });
-  // const pages = await getPages();
-  // renderPages(pages);
-  // setStorageListener();
 })();

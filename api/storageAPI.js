@@ -1,5 +1,6 @@
-import { STORAGE_AREA } from './config.js';
+import { STORAGE_AREA } from '../common/config.js';
 
+// =============== chrome.storage api ===============
 /**
  * 获取数据
  */
