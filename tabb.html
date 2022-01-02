@@ -8,32 +8,46 @@
     <link rel="stylesheet" href="tabb.css" />
   </head>
   <body>
-    <div class="tabb-container">
-      <header>Tabb</header>
-      <main>
-        <div id="pages">
-          <div class="group" style="display: none">
-            <div class="group-info">
-              <div class="title">Web 前端学习</div>
-              <div class="page-count">4个分页</div>
-              <div class="detail">
-                <div class="create-time">创建于 2021/12/15 下午2:17:41</div>
-                <div class="actions">
-                  <div>恢复全部</div>
-                  <div class="disabled">删除全部</div>
+    <div class="__tabb_root">
+      <!-- 标题 -->
+      <header>
+        <h1>Tabb</h1>
+      </header>
+      <!-- 主要内容区域 -->
+      <section class="__tabb_sec">
+        <aside class="__tabb_sidebar">
+          <ul class="__tabb_menu"></ul>
+        </aside>
+        <div class="__tabb_layout_options">
+          <div key="list">L</div>
+          <div key="card">C</div>
+          <div key="single">S</div>
+        </div>
+        <main class="__tabb_pages">
+          <div id="pages">
+            <div class="group" style="display: none">
+              <div class="group-info">
+                <div class="title">Web 前端学习</div>
+                <div class="page-count">4个分页</div>
+                <div class="detail">
+                  <div class="create-time">创建于 2021/12/15 下午2:17:41</div>
+                  <div class="actions">
+                    <div>恢复全部</div>
+                    <div class="disabled">删除全部</div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div class="page">
-              <img
-                src="https://developer.chrome.com/images/meta/favicon-32x32.png"
-                alt=""
-              />
-              <span>Extension development overview - Chrome Developers</span>
+              <div class="page">
+                <img
+                  src="https://developer.chrome.com/images/meta/favicon-32x32.png"
+                  alt=""
+                />
+                <span>Extension development overview - Chrome Developers</span>
+              </div>
             </div>
           </div>
-        </div>
-      </main>
+        </main>
+      </section>
     </div>
 
     <script src="tabb.js" type="module"></script>

@@ -8,7 +8,7 @@ body {
   font-size: 1em;
 }
 
-.tabb-container {
+.__tabb_root {
   display: flex;
   flex-direction: column;
   width: 100vw;
@@ -16,13 +16,77 @@ body {
   padding: 0 40px;
 }
 
-header {
+/* Title 'Tabb'  */
+.__tabb_root header {
+  display: flex;
+  align-items: center;
   padding: 24px 0;
 }
 
-main {
+.__tabb_root .__tabb_sec {
+  position: relative;
   flex: 1;
-  padding-bottom: 60px;
+  display: flex;
+  overflow: hidden;
+}
+
+/* 侧边栏 */
+.__tabb_sec > .__tabb_sidebar {
+  min-width: 200px;
+  padding: 14px 24px;
+}
+
+.__tabb_sidebar > ul {
+  overflow: auto;
+}
+
+.__tabb_sidebar .__tabb_menu_item {
+  list-style: none;
+  padding: 8px 16px;
+  cursor: pointer;
+}
+
+.__tabb_sidebar .__tabb_menu_item + .__tabb_menu_item {
+  margin-top: 8px;
+}
+
+.__tabb_sidebar .__tabb_menu_item:hover,
+.__tabb_sidebar .__tabb_menu_item.active {
+  background-color: #cdcdcd;
+}
+
+/* 布局模式选项 */
+.__tabb_sec > .__tabb_layout_options {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  display: flex;
+  gap: 8px;
+  padding: 8px 12px;
+  border-radius: 14px;
+  background-color: #fff;
+  box-shadow: 2px 2px 4px #cdcdcd;
+}
+
+.__tabb_layout_options > div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+.__tabb_layout_options > div:hover,
+.__tabb_layout_options > div.active {
+  background-color: #e3e3e3;
+}
+
+/* 主页面 */
+.__tabb_sec > .__tabb_pages {
+  flex: 1;
+  padding-bottom: 40px;
   overflow: auto;
 }
 

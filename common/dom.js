@@ -34,18 +34,30 @@ export const createComponent = (type) => {
  * 创建元素
  * @param {string} tagName
  * @param {Object} attrs
- * @param {Array} children
+ * @param {HTMLElement|HTMLElement[]} children
  * @returns
  */
 export const createElement = (tagName, attrs = {}, children = []) => {
   const el = document.createElement(tagName);
   for (const prop in attrs) {
-    el[prop] = attrs[prop];
+    el.setAttribute(prop, attrs[prop]);
+  }
+  if (!Array.isArray(children)) {
+    children = [children];
   }
   children.forEach((child) => {
     el.appendChild(child);
   });
   return el;
+};
+
+/**
+ * 创建文本节点
+ * @param {string} text
+ * @returns
+ */
+export const createText = (text) => {
+  return document.createTextNode(text);
 };
 
 /**
